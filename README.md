@@ -3,6 +3,29 @@
 # Question
 
 REQUIREMENTS:
+Page 1
+1. Search form (mandatory fields)
+* Title
+* Author
+2. Directory of books
+* Display a list of 10 books by default, with the titles in alphabetical order
+* Each item in the books list should display the following:
+* Thumbnail of the Cover
+* Title
+* Author
+* Edit button (that will lead to Page 2)
+* Search result should include all possibilities based on keywords found in Title or Author fields
+* You may use GET or POST methods for the search
+Page 2
+1. Edit book form (mandatory fields)
+* Title
+* Author
+* Save button (saves changes made before returning to the Books List)
+* Cancel button (brings you back to the Books List without saving)
+2. Editing a book
+* Pre-populate the form with the book’s info (i.e. if you entered this page by clicking on the Edit button of Book 1, the form should display the Title, Author, and Thumbnail Cover of Book 1)
+* Saving should be done by the POST method only
+* Book List should also reflect the changes made to the book
 
   
 # Points to note
