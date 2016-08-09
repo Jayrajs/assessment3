@@ -1,0 +1,23 @@
+.banner {
+    width: 100%;
+    height: 200px;
+    background: url(images/children_library.jpg) center no-repeat;
+    background-size: cover;
+}
+.search-type input {
+    height: 27px !important;
+}
+.search-field {
+    padding-right: 20px !important;
+}
+.book {
+    padding-bottom: 20px;
+}
+.list .book img {
+    width: 240px;
+    height: 300px;
+}
+.list .book button {
+    width: 100%;
+    padding: 10px 0;
+}

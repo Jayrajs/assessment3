@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="jumbotron">
+        <form name="searchForm" ng-submit="ctrl.search(ctrl.searchType.selectedType,ctrl.keyword)" class="form-group">
+            <div class="search-type col-lg-3 pull-left">
+                <ui-select multiple ng-model="ctrl.searchType.selectedType" theme="bootstrap" sortable="true" close-on-select="false">
+                    <ui-select-match placeholder="Search by...">{{$item}}</ui-select-match>
+                    <ui-select-choices repeat="type in ctrl.typesOfSearch">
+                        {{type}}
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="input-group col-lg-7 pull-left search-field">
+                <input type="text" name="keyword" class="form-control" ng-model="ctrl.keyword"
+                       placeholder="e.g. Cliffhanger, Wilson"
+                       required>
+            </div>
+            <button type="submit" class="btn btn-primary col-lg-2 pull-left">Search</button>
+        </form>
+    </div>
+
+    <div class="list" ng-show="ctrl.books">
+        <div class="book col-lg-3 col-md-4 col-sm-6" ng-repeat="book in ctrl.books | orderBy:'title'">
+            <img src="images/thumbnails/{{book.cover_thumbnail}}" alt="{{ctrl.book.cover_thumbnail}}" class="img-thumbnail">
+            <h4>{{book.title}}</h4>
+            <h5>by {{book.author_firstname}} {{book.author_lastname}}</h5>
+            <button type="button" class="btn btn-default" ng-click="ctrl.getBook(book.id)">Edit</button>
+        </div>
+    </div>
+    <div class="list" ng-hide="ctrl.books">
+        <h1>Book(s) that you are searching for cannot be found. Please try again with a different search term.</h1>
+    </div>
+</div>
