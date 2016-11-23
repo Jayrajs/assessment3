@@ -1,12 +1,12 @@
 (function () {
-    angular.module("BooksApp")
+    angular.module("GroceryApp")
         .controller("ListCtrl", ListCtrl)
         .controller("EditCtrl", EditCtrl);
 
-    function ListCtrl(BooksService, $state) {
+    function ListCtrl(GroceryService, $state) {
         var vm = this;
-        vm.books = "";
-        vm.typesOfSearch = ['Title','Author'];
+        vm.products = "";
+        vm.typesOfSearch = ['Brand','Name'];
         vm.searchType = [];
         vm.searchType.selectedType = [];
 
@@ -15,60 +15,73 @@
                 alert('Please select at least one search type');
             }
             else {
-                BooksService.search(searchType, keyword)
-                    .then(function (books) {
-                        vm.books = books;
+                GroceryService.search(searchType, keyword)
+                    .then(function (products) {
+                        vm.products = products;
                     })
                     .catch(function (err) {
-                        console.info("Some Error Occured",err);
+                        console.info("Some Error Occurred",err);
                     });
             }
         };
         
-        vm.getBook = function (id) {
-            $state.go("edit", {'bookId' : id});
+        vm.getProduct = function (id) {
+            $state.go("edit", {'productId' : id});
         };
         
-        BooksService.list()
-            .then(function (books) {
-                vm.books = books;
+        GroceryService.list()
+            .then(function (products) {
+                vm.products = products;
             }).catch(function (err) {
-            console.info("Some Error Occured",err)
+            console.info("Some Error Occurred",err)
         });
     }
 
-    ListCtrl.$inject = ['BooksService', '$state'];
+    ListCtrl.$inject = ['GroceryService', '$state'];
 
-    function EditCtrl(BooksService, $stateParams, $state) {
+    function EditCtrl(GroceryService, $stateParams, $state) {
         var vm = this;
-        vm.book = {};
+        vm.product = {};
 
         vm.cancel = function () {
             $state.go("list");
         };
         
-        BooksService.edit($stateParams.bookId)
-            .then(function (book) {
-                console.log(book);
-                vm.book = book;
-                console.log(vm.book);
+        GroceryService.edit($stateParams.productId)
+            .then(function (product) {
+                vm.product = product;
             }).catch(function (err) {
-                console.info("Some Error Occured",err)
+                console.info("Some Error Occurred",err)
             });
 
         vm.save = function () {
             console.log("Saving the changes");
-            BooksService.save(vm.book)
+            GroceryService.save(vm.product)
                 .then(function (result) {
-                    console.info("Book saved.");
+                    console.info("Product saved.");
                     $state.go("list");
                 }).catch(function (err) {
-                console.info("Some Error Occured",err)
+                console.info("Some Error Occurred",err)
             });
+        }
+
+        vm.remove = function () {
+            console.log("Removing this product");
+            if (confirm("Do you really want to remove this product from your Groceries?") == true) {
+                GroceryService.remove(vm.product)
+                    .then(function (result) {
+                        console.info("Product removed.");
+                        $state.go("list");
+                    }).catch(function (err) {
+                    console.info("Some Error Occurred",err)
+                });
+            } else {
+                //do nothing
+            }
         }
 
     }
 
-    EditCtrl.$inject = ['BooksService', '$stateParams', '$state'];
+    EditCtrl.$inject = ['GroceryService', '$stateParams', '$state'];
     
 })();

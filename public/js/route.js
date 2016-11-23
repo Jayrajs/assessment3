@@ -1,8 +1,8 @@
 (function () {
-    angular.module("BooksApp")
-        .config(BooksConfig);
+    angular.module("GroceryApp")
+        .config(GroceryConfig);
 
-    function BooksConfig($stateProvider, $urlRouterProvider) {
+    function GroceryConfig($stateProvider, $urlRouterProvider) {
         $stateProvider
             .state("list", {
                 url: "/list",
@@ -10,7 +10,7 @@
                 controller: "ListCtrl as ctrl"
             })
             .state("edit", {
-                url: "/edit/:bookId",
+                url: "/edit/:productId",
                 templateUrl: "/views/edit.html",
                 controller: "EditCtrl as ctrl"
             });
@@ -18,5 +18,5 @@
         $urlRouterProvider.otherwise("/list");
     }
 
-    BooksConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
+    GroceryConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
 })();

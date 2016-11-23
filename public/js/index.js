@@ -1,3 +1,3 @@
 (function () {
-    angular.module("BooksApp", ["ui.router", 'ui.select', 'ngSanitize']);
+    angular.module("GroceryApp", ["ui.router", 'ui.select', 'ngSanitize']);
 })();

@@ -1,7 +1,7 @@
 {
-  "name": "fsf2-assessment-2",
+  "name": "fsf3-assessment-2",
   "description": "",
-  "main": "main.js",
+  "main": "server/main.js",
   "license": "ISC",
   "homepage": "",
   "ignore": [
